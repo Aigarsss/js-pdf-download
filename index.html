@@ -1,0 +1,30 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="sku.js"></script>
+
+    <script>
+        const linkStart = 'https://www.sols-europe.com/gb/pdfpublication/pdf/product/sku/';
+        sku.forEach(element => {
+            document.write('<a target = "_blank" class="click" href="' + linkStart + element.id +'">'+ element.id +'</a></br>')
+        });
+    </script>
+</head>
+<body></body>
+</html>
+
+<script>
+    const clickInterval = setInterval(function () {
+    const el = document.querySelector('.click:not(.clicked)');
+    if(el){
+        el.classList.add('clicked');
+        el.click()
+    } else {
+        clearInterval(clickInterval);
+    }    
+}, 2000);
+
+</script>

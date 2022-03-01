@@ -1,0 +1,25 @@
+https://stackoverflow.com/questions/71298288/downloading-pdf-files-from-direct-download-link-using-node-puppeteer-js/71313336#71313336
+
+import http from "https";
+import fs from "fs";
+
+(async () => {
+  const skus = ["00548", "03575"];
+
+  const filesPromiseArray = skus.map(
+    (sku) =>
+      new Promise((resolve, reject) => {
+        const file = fs.createWriteStream(`${sku}.pdf`);
+        const request = http.get(`https://www.sols-europe.com/gb/pdfpublication/pdf/product/sku/${sku}`, (response) =>
+          response.pipe(file)
+        );
+        file.on("finish", resolve);
+        file.on("error", reject);
+      })
+  );
+  try {
+    await Promise.all(filesPromiseArray);
+  } catch {
+    console.log("There was an error downloading one of the files");
+  }
+})();
