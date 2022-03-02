@@ -9,7 +9,7 @@
     <script>
         const linkStart = 'https://www.sols-europe.com/gb/pdfpublication/pdf/product/sku/';
         sku.forEach(element => {
-            document.write('<a target = "_blank" class="click" href="' + linkStart + element.id +'">'+ element.id +'</a></br>')
+            document.write('<a target = "_blank" class="click" href="' + linkStart + element.id +'/store/2/">'+ element.id +'</a></br>')
         });
     </script>
 </head>
@@ -17,10 +17,13 @@
 </html>
 
 <script>
+    let i = 1;
     const clickInterval = setInterval(function () {
     const el = document.querySelector('.click:not(.clicked)');
     if(el){
         el.classList.add('clicked');
+        console.log(`click ${i}`);
+        i++;
         el.click()
     } else {
         clearInterval(clickInterval);
